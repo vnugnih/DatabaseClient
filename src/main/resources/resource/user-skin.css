@@ -1,0 +1,11 @@
+@font-face { 
+    src: url('Roboto-Regular.ttf'); 
+}
+
+@font-face { 
+    src: url('Roboto-Bold.ttf'); 
+}
+
+.root { 
+    -fx-font: 13px 'Roboto';
+}
