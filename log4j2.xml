@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="https://logging.apache.org/xml/ns"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="https://logging.apache.org/xml/ns https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+
+    <Properties>
+        <Property name="FILE">
+            database-client-log.txt
+        </Property>
+        <Property name="PATTERN_ALL">
+            %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class.%method:%line %message%n
+        </Property>
+        <Property name="PATTERN_INFO">
+            %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %message%n
+        </Property>
+    </Properties>
+         
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN_ALL}"/>\
+            <LevelRangeFilter minLevel="ERROR" maxLevel="DEBUG"/>
+        </Console>
+        <File name="info" fileName="${FILE}">
+            <PatternLayout pattern="${PATTERN_INFO}"/>
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO"/>
+        </File>
+        <File name="error" fileName="${FILE}">
+            <PatternLayout pattern="${PATTERN_ALL}"/> 
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR"/>
+        </File>
+        <File name="debug" fileName="${FILE}">
+            <PatternLayout pattern="${PATTERN_ALL}"/>
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="info"/>
+            <AppenderRef ref="error"/>
+            <AppenderRef ref="debug"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
