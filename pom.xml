@@ -15,6 +15,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>21</javafx.version>
         <maven.compiler.release>21</maven.compiler.release>
+        <exec.mainClass>com.shelf.databaseclient.ui.DatabaseClient</exec.mainClass>
+        <exec.classPath>lib/json-simple-1.1.1.jar lib/mysql-connector-j-8.4.0.jar lib/postgresql-42.7.4.jar lib/sqlite-jdbc-3.46.1.0.jar lib/log4j-api-2.24.1.jar lib/log4j-core-2.24.1.jar</exec.classPath>
     </properties>
 
     <dependencies>
@@ -22,16 +24,6 @@
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.hamcrest</groupId>
-                    <artifactId>hamcrest-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -74,25 +66,17 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <release>${maven.compiler.release}</release>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.2</version>
                 <configuration>
                     <archive>
                         <manifest>
                             <addDefaultEntries>true</addDefaultEntries>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            <mainClass>com.shelf.databaseclient.ui.DatabaseClient</mainClass>
+                            <mainClass>${exec.mainClass}</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>lib/json-simple-1.1.1.jar lib/mysql-connector-j-8.4.0.jar lib/postgresql-42.7.4.jar lib/sqlite-jdbc-3.46.1.0.jar lib/log4j-api-2.24.1.jar lib/log4j-core-2.24.1.jar</Class-Path>
+                            <Class-Path>${exec.classPath}</Class-Path>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -100,10 +84,10 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.5</version>
+                <version>0.0.8</version>
                 <configuration>
                     <release>${maven.compiler.release}</release>
-                    <mainClass>com.shelf.databaseclient.ui.DatabaseClient</mainClass>
+                    <mainClass>${exec.mainClass}</mainClass>
                 </configuration>
             </plugin>
         </plugins>
