@@ -17,7 +17,7 @@
          
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="${PATTERN_ALL}"/>\
+            <PatternLayout pattern="${PATTERN_ALL}"/>
             <LevelRangeFilter minLevel="ERROR" maxLevel="DEBUG"/>
         </Console>
         <File name="info" fileName="${FILE}">
